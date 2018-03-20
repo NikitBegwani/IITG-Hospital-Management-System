@@ -1,0 +1,48 @@
+{% load staticfiles %}
+
+<html>
+  <head>
+    <title>
+      Chart
+    </title>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+   <script src="/static/js/jquery.min.js" type="text/javascript"></script>
+   
+    <script src="/static/js/jquery-1.9.1.js" type="text/javascript"></script>
+    <script src="/static/js/highcharts.js" type="text/javascript"></script>
+    <script src="/static/js/exporting.js" type="text/javascript"></script>
+
+    
+    <script type="text/javascript">
+        $(function () { 
+    $('#container').highcharts({
+        chart: {
+            type: 'bar'
+        },
+        colors: ['#562F1E', '#AF7F24', '#263249', '#5F7F90', '#D9CDB6'],
+        title: {
+            text: 'Ratings graph'
+        },
+        xAxis: {
+            categories: ['Poor','Average','Good','Very Good','Execellent' ]
+        },
+        yAxis: {
+            title: {
+                text: 'No. of Prescriptions'
+            }
+        },
+        
+        series: [{
+            name: 'Ratings',
+            data:  [{% for i in data %}
+                        {{i}},
+                        {% endfor %}]
+        } ]
+    });
+});
+    </script>
+  </head>
+  <body>
+    <div id="container" style="min-width: 400px; height: 400px; margin: 0 auto"></div>
+  </body>
+</html>
